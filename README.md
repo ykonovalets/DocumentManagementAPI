@@ -9,7 +9,7 @@ All required infrastructure(sql database, sql migrations, blob container) is set
 Ideally, it should be setup separately from web application using powershell, terraform scripts or ARM templates :)
 
 Development plan: 
-1. Design API data contracts
+1. Design API data contracts. Document contracts via swagger 
 2. Choose appropriate data store. Chosen stores: azure blob storage for storing documents and enable user to download file by location, sql: to be able to set transactionally custom order of multiple documents 
 3. Implement some use cases. Implemented enpoints: upload new document(max file size, invalid extension cases covered), get all uploaded documents
 4. Cover implemented use cases with tests. Unfortunately I didn't have time to cover endpoints with tests.
