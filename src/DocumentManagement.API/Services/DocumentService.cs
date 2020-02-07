@@ -57,11 +57,11 @@ namespace DocumentManagement.API.Services
             return Result.Ok();
         }
 
-        private static Result ValidateDocument(string fileName, Stream stream, Settings settings)
+        private static Result ValidateDocument(string name, Stream stream, Settings settings)
         {
             Func<Result>[] orderedValidators =
             {
-                () => ValidateExtension(fileName, settings.AllowedDocumentExtensions),
+                () => ValidateExtension(name, settings.AllowedDocumentExtensions),
                 () => ValidateSize(stream, settings.MaxDocumentSizeInBytes)
             };
 
@@ -77,11 +77,11 @@ namespace DocumentManagement.API.Services
         }
 
         private static Result ValidateExtension(
-            string untrustedFileName, 
+            string untrustedDocumentName, 
             IReadOnlyCollection<string> allowedDocumentExtensions)
         {
-            var fileName = Path.GetFileName(untrustedFileName);
-            var extension = Path.GetExtension(fileName).ToLowerInvariant();
+            var name = Path.GetFileName(untrustedDocumentName);
+            var extension = Path.GetExtension(name).ToLowerInvariant();
 
             if (string.IsNullOrEmpty(extension) || !allowedDocumentExtensions.Contains(extension))
             {
