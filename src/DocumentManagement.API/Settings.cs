@@ -23,7 +23,7 @@ namespace DocumentManagement.API
 
         public long MaxDocumentSizeInBytes => _configuration.GetValue<long>("MaxDocumentSizeInBytes");
 
-        public IReadOnlyCollection<string> AllowedDocumentExtensions =>
-            _configuration.GetSection("AllowedDocumentExtensions").Get<string[]>();
+        public IReadOnlyCollection<string> ValidDocumentExtensions =>
+            _configuration.GetSection("ValidDocumentExtensions").Get<string[]>();
     }
 }

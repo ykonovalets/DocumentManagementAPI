@@ -6,8 +6,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
 using DbUp;
-using DocumentManagement.API.Infrastructure;
-using DocumentManagement.API.Services;
+using DocumentManagement.Persistence;
+using DocumentManagement.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -67,9 +67,9 @@ namespace DocumentManagement.API
             services.AddScoped<IDbConnection>(sp => new SqlConnection(Settings.DocumentsDbSqlConnectionString));
             services.AddTransient<SqlDocumentRepository>();
 
-            services.AddSingleton(sp => new DocumentService.Settings(
+            services.AddSingleton(sp => new Domain.Settings(
                 Settings.MaxDocumentSizeInBytes,
-                Settings.AllowedDocumentExtensions));
+                Settings.ValidDocumentExtensions));
 
             services.AddTransient<DocumentService>();
         }

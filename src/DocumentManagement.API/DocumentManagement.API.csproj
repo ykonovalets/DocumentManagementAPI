@@ -24,11 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
     <PackageReference Include="dbup" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DocumentManagement.Services\DocumentManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using DocumentManagement.API.Services;
+using DocumentManagement.Domain;
 
-namespace DocumentManagement.API.Infrastructure
+namespace DocumentManagement.Persistence
 {
     public class SqlDocumentRepository
     {

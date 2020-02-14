@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
 
-namespace DocumentManagement.API.Infrastructure
+namespace DocumentManagement.Persistence
 {
     public class AzureBlobStorage
     {

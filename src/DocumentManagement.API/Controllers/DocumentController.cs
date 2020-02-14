@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
-using DocumentManagement.API.Services;
+using DocumentManagement.API.Extensions;
+using DocumentManagement.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentManagement.API.Controllers
 {
-    [Produces("application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("v1/documents")]
-    [ProducesResponseType(typeof(Error), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ApiError), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public class DocumentController : ControllerBase
     {
@@ -58,7 +60,7 @@ namespace DocumentManagement.API.Controllers
         /// Uploads new document
         /// </summary>
         [HttpPost]
-        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Upload([Required] IFormFile formFile)
         {
             // Using IFormFile means that files are buffered. If the size or frequency of file uploads
@@ -70,12 +72,8 @@ namespace DocumentManagement.API.Controllers
                 // When displaying or logging, HTML encode the file name. An attacker can provide a malicious filename,
                 // including full paths or relative paths.
                 var uploadNewDocumentResult = await _documentService.UploadNewDocument(formFile.FileName, stream);
-                if (!uploadNewDocumentResult.Successful)
-                {
-                    return BadRequest(uploadNewDocumentResult.Error);
-                }
+                return this.Result(uploadNewDocumentResult);
             }
-            return Ok();
         }
 
         public class ReorderDocumentRequest
@@ -90,7 +88,7 @@ namespace DocumentManagement.API.Controllers
         /// Reorders list of uploaded documents
         /// </summary>
         [HttpPut("reorder")]
-        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiError), StatusCodes.Status400BadRequest)]
         public ActionResult Reorder([FromBody, Required] ReorderDocumentRequest request)
         {
             throw new NotImplementedException();

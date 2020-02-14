@@ -2,7 +2,7 @@
 using System.Data;
 using Dapper;
 
-namespace DocumentManagement.API.Infrastructure
+namespace DocumentManagement.Persistence
 {
     public class UriTypeHandler : SqlMapper.TypeHandler<Uri>
     {
