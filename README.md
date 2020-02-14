@@ -2,8 +2,8 @@
 
 Following stuff is needed to run web api:
 - .Net Core 2.2 (unfortunately it has reached end of official support)
-- Started Azure storage emulator
-- Started Microsoft SQL LocalDb
+- Launched Azure storage emulator
+- Launched Microsoft SQL LocalDb
 
 All required infrastructure(sql database, sql migrations, blob container) is setup during application startup for simplicity.
 Ideally, it should be setup separately from web application using powershell, terraform scripts or ARM templates :)
